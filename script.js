@@ -70,13 +70,20 @@ return result;
 // console.log(playRound(computerPlay(), "roCK"));
 // console.log(playRound(computerPlay(), "PapEr"));
 
+
 function game(){
     let score = 0;
     let computerSelection;
     let playerSelection;
     for (let i = 0; i < 5; i++) {
         playerSelection = prompt("Choose Rock, Paper or Scissors");
+        playerSelection = playerSelection.toLowerCase(playerSelection);
         computerSelection = computerPlay();
+        //VALIDATION
+        while (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors") {
+            playerSelection = prompt ("please choose rock, paper or scissors");
+            playerSelection = playerSelection.toLowerCase(playerSelection);          
+        }
         console.log(playerSelection);
         console.log(computerSelection);
         if(playRound(computerSelection, playerSelection) == "player"){
@@ -93,4 +100,4 @@ function game(){
     }
     console.log(`Final result: Player ${score} points, Computer ${5-score} points`);
 }
-game();
+// game();
