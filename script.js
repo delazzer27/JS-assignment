@@ -21,13 +21,6 @@ function computerPlay () {
     }
     return computerSelection;
 }
-// Another way to do it with arrays
-// function computerPlay () {
-//     let computerSelection = ["Rock", "Paper", "Scissors"];
-//     return computerSelection(Math.floor(Math.random() *3))
-// }
-
-console.log(computerPlay ());
 
 function playRound (computerSelection, playerSelection) {
     computerSelection = computerPlay();
@@ -75,14 +68,7 @@ function playRound (computerSelection, playerSelection) {
 return result;
 }
 
-// Trying playRound
-// console.log(playRound(computerPlay(), "roCK"));
-// console.log(playRound(computerPlay(), "roCK"));
-// console.log(playRound(computerPlay(), "PapEr"));
-
-
-
-    btn.forEach(element => {
+btn.forEach(element => {
         element.addEventListener("click", ()=>{
             let computerSelection;
             let playerSelection = element.value;
@@ -105,7 +91,6 @@ return result;
                 document.body.appendChild(para);
                 div.style.display = "none"
                 h2.style.display = "none"
-
             } else if (computerScore === 5) {
                 console.log("Computer wins, you lose :(");
                 para.textContent = "Computer wins, you lose :("
@@ -115,6 +100,3 @@ return result;
             }
         })
     });
-        
-    
-// game();
