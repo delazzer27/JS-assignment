@@ -69,34 +69,34 @@ return result;
 }
 
 btn.forEach(element => {
-        element.addEventListener("click", ()=>{
-            let computerSelection;
-            let playerSelection = element.value;
-                if(playRound(computerSelection, playerSelection) == "player"){
-                    playerScore++;
-                    h2.textContent = "player wins this round!"
-                    para.textContent = ` Player ${playerScore} points, Computer ${computerScore} points`;
-                    document.body.appendChild(para);
-                    document.body.appendChild(h2)
-                } else {
-                    computerScore++;
-                    h2.textContent = "computer wins this round!"
-                    para.textContent = ` Player ${playerScore} points, Computer ${computerScore} points`;
-                    document.body.appendChild(para);
-                    document.body.appendChild(h2);
-                } 
-            if (playerScore === 5) {
-                console.log("You win!");
-                para.textContent = "You win!";
+    element.addEventListener("click", ()=>{
+        let computerSelection;
+        let playerSelection = element.value;
+            if(playRound(computerSelection, playerSelection) == "player"){
+                playerScore++;
+                h2.textContent = "player wins this round!"
+                para.textContent = ` Player ${playerScore} points, Computer ${computerScore} points`;
                 document.body.appendChild(para);
-                div.style.display = "none"
-                h2.style.display = "none"
-            } else if (computerScore === 5) {
-                console.log("Computer wins, you lose :(");
-                para.textContent = "Computer wins, you lose :("
+                document.body.appendChild(h2)
+            } else {
+                computerScore++;
+                h2.textContent = "computer wins this round!"
+                para.textContent = ` Player ${playerScore} points, Computer ${computerScore} points`;
                 document.body.appendChild(para);
-                div.style.display = "none"
-                h2.style.display = "none"
-            }
-        })
-    });
+                document.body.appendChild(h2);
+            } 
+        if (playerScore === 5) {
+            console.log("You win!");
+            para.textContent = "You win!";
+            document.body.appendChild(para);
+            div.style.display = "none"
+            h2.style.display = "none"
+        } else if (computerScore === 5) {
+            console.log("Computer wins, you lose :(");
+            para.textContent = "Computer wins, you lose :("
+            document.body.appendChild(para);
+            div.style.display = "none"
+            h2.style.display = "none"
+        }
+    })
+});
