@@ -1,15 +1,23 @@
+let btn = document.querySelectorAll("button");
+let playerScore = 0;
+let computerScore = 0;
+const input = document.querySelector("input");
+const para = document.createElement("p");
+const div = document.querySelector("div")
+const h2 = document.createElement("h2")
+
 function computerPlay () {
     let number = Math.floor(Math.random() *3);
     let computerSelection;
     switch (number) {
         case 0:
-        computerSelection = "Rock";
+        computerSelection = "rock";
         break;
         case 1:
-        computerSelection = "Paper";
+        computerSelection = "paper";
         break;
         case 2:
-        computerSelection = "Scissors";
+        computerSelection = "scissors";
     }
     return computerSelection;
 }
@@ -22,46 +30,48 @@ function computerPlay () {
 console.log(computerPlay ());
 
 function playRound (computerSelection, playerSelection) {
-    playerSelection = playerSelection.toLowerCase(playerSelection);
-    computerSelection = computerSelection.toLowerCase(computerSelection);
+    computerSelection = computerPlay();
+    playerSelection = btn;
     let result;
-    switch (playerSelection) {
-        case "rock":
-            switch (computerSelection) {
+    playerSelection.forEach(element => {
+            switch (element.value) {
                 case "rock":
-                    result = "tie";
+                    switch (computerSelection) {
+                        case "rock":
+                            result = "tie";
+                            break;
+                        case "paper":
+                            result = "computer";
+                            break;
+                        case "scissors":
+                            result = "player";
+                    }
                     break;
                 case "paper":
-                    result = "computer";
+                    switch (computerSelection) {
+                        case "rock":
+                            result = "player";
+                            break;
+                        case "paper":
+                            result = "tie";
+                            break;
+                        case "scissors":
+                            result = "computer";
+                    }
                     break;
                 case "scissors":
-                    result = "player";
+                    switch (computerSelection) {
+                        case "rock":
+                            result = "computer";
+                            break;
+                        case "paper":
+                            result = "player";
+                            break;
+                        case "scissors":
+                            result = "tie";
+                    }
             }
-            break;
-        case "paper":
-            switch (computerSelection) {
-                case "rock":
-                    result = "player";
-                    break;
-                case "paper":
-                    result = "tie";
-                    break;
-                case "scissors":
-                    result = "computer";
-            }
-            break;
-        case "scissors":
-            switch (computerSelection) {
-                case "rock":
-                    result = "computer";
-                    break;
-                case "paper":
-                    result = "player";
-                    break;
-                case "scissors":
-                    result = "tie";
-            }
-    }
+        })
 return result;
 }
 
@@ -71,33 +81,40 @@ return result;
 // console.log(playRound(computerPlay(), "PapEr"));
 
 
-function game(){
-    let score = 0;
-    let computerSelection;
-    let playerSelection;
-    for (let i = 0; i < 5; i++) {
-        playerSelection = prompt("Choose Rock, Paper or Scissors");
-        playerSelection = playerSelection.toLowerCase(playerSelection);
-        computerSelection = computerPlay();
-        //VALIDATION
-        while (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors") {
-            playerSelection = prompt ("please choose rock, paper or scissors");
-            playerSelection = playerSelection.toLowerCase(playerSelection);          
-        }
-        console.log(playerSelection);
-        console.log(computerSelection);
-        if(playRound(computerSelection, playerSelection) == "player"){
-            console.log("Player wins this round!");
-            score++;
-        } else {
-            console.log("Computer wins this round!");
-        }
-    }
-    if (score >= 3) {
-        console.log("You win!");
-    } else {
-        console.log("Computer wins, you lose :(");
-    }
-    console.log(`Final result: Player ${score} points, Computer ${5-score} points`);
-}
+
+    btn.forEach(element => {
+        element.addEventListener("click", ()=>{
+            let computerSelection;
+            let playerSelection = element.value;
+                if(playRound(computerSelection, playerSelection) == "player"){
+                    playerScore++;
+                    h2.textContent = "player wins this round!"
+                    para.textContent = ` Player ${playerScore} points, Computer ${computerScore} points`;
+                    document.body.appendChild(para);
+                    document.body.appendChild(h2)
+                } else {
+                    computerScore++;
+                    h2.textContent = "computer wins this round!"
+                    para.textContent = ` Player ${playerScore} points, Computer ${computerScore} points`;
+                    document.body.appendChild(para);
+                    document.body.appendChild(h2);
+                } 
+            if (playerScore === 5) {
+                console.log("You win!");
+                para.textContent = "You win!";
+                document.body.appendChild(para);
+                div.style.display = "none"
+                h2.style.display = "none"
+
+            } else if (computerScore === 5) {
+                console.log("Computer wins, you lose :(");
+                para.textContent = "Computer wins, you lose :("
+                document.body.appendChild(para);
+                div.style.display = "none"
+                h2.style.display = "none"
+            }
+        })
+    });
+        
+    
 // game();
