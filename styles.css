@@ -1,0 +1,25 @@
+*{
+    background-color: rgb(25, 24, 24);
+}
+
+img {
+    width: 120px;
+    height: 175px;
+}
+
+div {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: aliceblue;
+}
+
+button:hover {
+    opacity: 60%;
+}
